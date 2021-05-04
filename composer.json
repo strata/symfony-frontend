@@ -4,7 +4,7 @@
     "type": "library",
     "license": "MIT",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": ">=7.4",
         "strata/frontend": "dev-release/0.8.0 as 0.8.0",
         "symfony/http-kernel": "^5.2",
         "twig/twig": "^3.0"
