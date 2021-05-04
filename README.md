@@ -4,6 +4,7 @@
 
 Includes:
 * Twig helpers
+* HTTP cache for full-page caching
 
 ## Requirements
 
