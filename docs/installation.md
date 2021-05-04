@@ -13,14 +13,19 @@ These instructions assume you already have an existing [Symfony 5 application](h
 composer require strata/symfony-frontend:^0.8
 ```
 
-During development of 0.8 branch:
+### During development of 0.8 branch
+
+Add to your `composer.json`:
 
 ```
-# During dev add this to your composer.json:
-"minimum-stability": "dev",
-"prefer-stable": true
+{
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
+```
 
-# Then run this composer command:
+Then run this composer command:
+```
 composer require "strata/symfony-frontend:dev-release/0.8.0 as 0.8.0"
 ```
 
