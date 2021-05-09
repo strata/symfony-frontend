@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Strata\Symfony;
 
+use Strata\Frontend\View\TableOfContents;
 use Strata\Frontend\View\ViewFilters;
 use Strata\Frontend\View\ViewFunctions;
 use Strata\Frontend\View\ViewTests;
@@ -32,7 +33,30 @@ class TwigExtension extends AbstractExtension
             new TwigFunction('not_empty', [$helpers, 'notEmpty'], ['is_variadic' => true]),
             new TwigFunction('all_not_empty', [$helpers, 'allNotEmpty'], ['is_variadic' => true]),
             new TwigFunction('staging_banner', [$helpers, 'stagingBanner'], ['is_safe' => ['html']]),
+            new TwigFunction('table_of_contents', [$this, 'tableOfContents'], ['is_safe' => ['html'], 'needs_environment' => true]),
         ];
+    }
+
+    /**
+     * Entry point for table_of_contents Twig function
+     * @param \Twig\Environment $env
+     * @param $content
+     * @param array|null $levels
+     * @return TableOfContents
+     * @throws \Strata\Frontend\Exception\ViewHelperException
+     */
+    public function tableOfContents(\Twig\Environment $env, $content, ?array $levels = null)
+    {
+        $content = (string) $content;
+        if (is_array($levels)) {
+            $toc = new TableOfContents($content, $levels);
+        } else {
+            $toc = new TableOfContents($content);
+        }
+        if ($env->isDebug()) {
+            $toc->enableDebug();
+        }
+        return $toc;
     }
 
     public function getFilters()
