@@ -51,13 +51,13 @@ class PreviewMode implements EventSubscriberInterface
         }
 
         $request = $event->getRequest();
-        $token = $request->get('x-craft-live-preview');
+        $token = $request->get('token');
         if (!empty($token)) {
             $this->previewMode = true;
 
             // Set token in all HTTP requests for CraftCMS to authenticate preview content requests
             $this->manager->getDataProvider($this->dataProvider)->setDefaultOptions(['headers' => [
-                'X-Craft-Live-Preview' => $token,
+                'X-Craft-Token' => $token,
             ]]);
         }
     }
