@@ -10,14 +10,15 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 /**
  * CraftCMS preview mode
+ *
  */
-class PreviewMode implements EventSubscriberInterface
+class PreviewModeEventSubscriber implements EventSubscriberInterface
 {
     private QueryManager $manager;
     private bool $previewMode = false;
     private string $dataProvider;
 
-    public function __construct(QueryManager $manager, string $dataProvider)
+    public function __construct(string $dataProvider, QueryManager $manager)
     {
         $this->manager = $manager;
         $this->dataProvider = $dataProvider;

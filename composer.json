@@ -1,7 +1,7 @@
 {
     "name": "strata/symfony-frontend",
     "description": "TODO",
-    "type": "library",
+    "type": "symfony-bundle",
     "license": "MIT",
     "require": {
         "php": ">=7.4",

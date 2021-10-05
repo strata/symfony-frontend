@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Strata\Symfony;
+namespace Strata\Symfony\Twig;
 
 use Strata\Frontend\View\TableOfContents;
 use Strata\Frontend\View\ViewFilters;
 use Strata\Frontend\View\ViewFunctions;
 use Strata\Frontend\View\ViewTests;
+use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
@@ -37,28 +38,6 @@ class TwigExtension extends AbstractExtension
         ];
     }
 
-    /**
-     * Entry point for table_of_contents Twig function
-     * @param \Twig\Environment $env
-     * @param $content
-     * @param array|null $levels
-     * @return TableOfContents
-     * @throws \Strata\Frontend\Exception\ViewHelperException
-     */
-    public function tableOfContents(\Twig\Environment $env, $content, ?array $levels = null)
-    {
-        $content = (string) $content;
-        if (is_array($levels)) {
-            $toc = new TableOfContents($content, $levels);
-        } else {
-            $toc = new TableOfContents($content);
-        }
-        if ($env->isDebug()) {
-            $toc->enableDebug();
-        }
-        return $toc;
-    }
-
     public function getFilters()
     {
         $helpers = new ViewFilters();
@@ -78,4 +57,27 @@ class TwigExtension extends AbstractExtension
             new TwigTest('is_prod', [$helpers, 'isProd']),
         ];
     }
+
+    /**
+     * Entry point for table_of_contents Twig function
+     * @param Environment $env
+     * @param $content
+     * @param array|null $levels
+     * @return TableOfContents
+     * @throws \Strata\Frontend\Exception\ViewHelperException
+     */
+    public function tableOfContents(Environment $env, $content, ?array $levels = null)
+    {
+        $content = (string) $content;
+        if (is_array($levels)) {
+            $toc = new TableOfContents($content, $levels);
+        } else {
+            $toc = new TableOfContents($content);
+        }
+        if ($env->isDebug()) {
+            $toc->enableDebug();
+        }
+        return $toc;
+    }
+
 }
