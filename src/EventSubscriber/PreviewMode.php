@@ -5,7 +5,7 @@ namespace Strata\Symfony\EventSubscriber;
 use Strata\Data\Exception\MissingDataProviderException;
 use Strata\Data\Query\QueryManager;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\RequestEvent;
+use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 /**
@@ -29,7 +29,7 @@ class PreviewMode implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            RequestEvent::class => 'onKernelRequest',
+            ControllerEvent::class => 'onKernelController',
             ResponseEvent::class => 'onKernelResponse',
         ];
     }
@@ -40,10 +40,10 @@ class PreviewMode implements EventSubscriberInterface
      * URL format: x-craft-live-preview=abc123
      *
      * @see https://nystudio107.com/blog/headless-preview-in-craft-cms
-     * @param RequestEvent $event
+     * @param ControllerEvent $event
      * @throws MissingDataProviderException
      */
-    public function onKernelRequest(RequestEvent $event)
+    public function onKernelController(ControllerEvent $event)
     {
         if (!$event->isMainRequest()) {
             // don't do anything if it's not the main request
@@ -51,8 +51,9 @@ class PreviewMode implements EventSubscriberInterface
         }
 
         $request = $event->getRequest();
+        $craftPreview = $request->get('x-craft-live-preview');
         $token = $request->get('token');
-        if (!empty($token)) {
+        if (!empty($craftPreview) && !empty($token)) {
             $this->previewMode = true;
 
             // Set token in all HTTP requests for CraftCMS to authenticate preview content requests
