@@ -12,7 +12,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Strata\\Symfony\\": "src/"
+            "Strata\\SymfonyBundle\\": "src/"
         }
     },
     "minimum-stability": "dev",

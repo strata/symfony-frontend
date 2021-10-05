@@ -1,6 +1,6 @@
 <?php
 
-namespace Strata\Symfony\EventSubscriber;
+namespace Strata\SymfonyBundle\EventSubscriber;
 
 use Strata\Frontend\Site;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

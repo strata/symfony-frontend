@@ -1,6 +1,6 @@
 <?php
 
-namespace Strata\Symfony\EventSubscriber;
+namespace Strata\SymfonyBundle\EventSubscriber;
 
 use Strata\Data\Exception\MissingDataProviderException;
 use Strata\Data\Query\QueryManager;

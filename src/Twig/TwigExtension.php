@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Strata\Symfony\Twig;
+namespace Strata\SymfonyBundle\Twig;
 
 use Strata\Frontend\View\TableOfContents;
 use Strata\Frontend\View\ViewFilters;

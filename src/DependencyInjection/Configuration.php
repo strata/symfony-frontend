@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Strata\Symfony\DependencyInjection;
+namespace Strata\SymfonyBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->arrayNode('preview_mode')
                     ->children()
-                        ->scalCarNode('data_provider')->end()
+                        ->scalarNode('data_provider')->end()
                     ->end()
                 ->end() // preview_mode
             ->end()

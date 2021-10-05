@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Strata\Symfony\DependencyInjection;
+namespace Strata\SymfonyBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 
@@ -19,7 +18,7 @@ class StrataExtension extends ConfigurableExtension
         $loader->load('services.yaml');
 
         // Pass params to service classes
-        $definition = $container->getDefinition('Strata\Symfony\EventSubscriber\PreviewModeEventSubscriber');
+        $definition = $container->getDefinition('strata.event_subscriber.preview_mode');
         $definition->replaceArgument(0, $mergedConfig['preview_mode']['data_provider']);
     }
 

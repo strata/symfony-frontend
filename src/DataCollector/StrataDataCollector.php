@@ -1,6 +1,6 @@
 <?php
 
-namespace Strata\Symfony\DataCollector;
+namespace Strata\SymfonyBundle\DataCollector;
 
 use Strata\Data\Query\QueryManager;
 use Strata\Frontend\Site;

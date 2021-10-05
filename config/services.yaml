@@ -1,0 +1,34 @@
+parameters:
+    strata.preview_mode.data_provider:
+
+services:
+    # Twig extension
+    strata.twig:
+        class: Strata\SymfonyBundle\Twig\TwigExtension
+        tags: [ 'twig.extension' ]
+
+    strata.event_subscriber.twig:
+        class: Strata\SymfonyBundle\EventSubscriber\TwigEventSubscriber
+        tags: [ 'kernel.event_subscriber' ]
+        arguments:
+            - '@Twig\Environment'
+            - '@Strata\Frontend\Site'
+
+    # Preview mode
+    strata.event_subscriber.preview_mode:
+        class: Strata\SymfonyBundle\EventSubscriber\PreviewModeEventSubscriber
+        tags: [ 'kernel.event_subscriber' ]
+        arguments:
+            - ''
+            - '@Strata\Data\Query\QueryManager'
+
+    # Data collector for web debug toolbar
+    strata.data_collector:
+        class: Strata\SymfonyBundle\DataCollector\StrataDataCollector
+        tags:
+            -
+                name: data_collector
+                id: 'strata'
+        arguments:
+            - '@Strata\Data\Query\QueryManager'
+            - '@Strata\Frontend\Site'
