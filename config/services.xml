@@ -19,13 +19,13 @@
 
         <service id="strata.event_subscriber.twig" class="Strata\SymfonyBundle\EventSubscriber\TwigEventSubscriber" autowire="false">
             <tag name="kernel.event_subscriber" />
-            <argument type="service">Twig\Environment</argument>
+            <argument type="service" id="Twig\Environment" />
             <argument type="service" id="strata.site" />
         </service>
 
         <service id="strata.event_subscriber.preview_mode" class="Strata\SymfonyBundle\EventSubscriber\PreviewModeEventSubscriber" autowire="false">
             <tag name="kernel.event_subscriber" />
-            <argument>~</argument>
+            <argument></argument>
             <argument type="service" id="strata.query_manager" />
         </service>
 
