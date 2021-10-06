@@ -2,6 +2,14 @@ parameters:
     strata.preview_mode.data_provider:
 
 services:
+    # Query manager
+    strata.query_manager:
+        class: Strata\Data\Query\QueryManager
+
+    # Site object
+    strata.site:
+        class: Strata\Frontend\Site
+
     # Twig extension
     strata.twig:
         class: Strata\SymfonyBundle\Twig\TwigExtension

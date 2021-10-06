@@ -38,7 +38,7 @@ class PreviewModeEventSubscriber implements EventSubscriberInterface
     /**
      * Detect Craft preview token and pass back in HTTP requests
      *
-     * URL format: x-craft-live-preview=abc123
+     * URL format: x-craft-live-preview=abc123&token=abc123
      *
      * @see https://nystudio107.com/blog/headless-preview-in-craft-cms
      * @param ControllerEvent $event
