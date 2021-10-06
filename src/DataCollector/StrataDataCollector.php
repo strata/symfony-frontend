@@ -3,6 +3,7 @@
 namespace Strata\SymfonyBundle\DataCollector;
 
 use Strata\Data\Query\QueryManager;
+use Strata\Frontend\Content\Field\DateTime;
 use Strata\Frontend\Site;
 use Symfony\Bundle\FrameworkBundle\DataCollector\AbstractDataCollector;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,7 +40,7 @@ class StrataDataCollector extends AbstractDataCollector
 
     public static function getTemplate(): ?string
     {
-        return '@Strata/data_collector.html.twig';
+        return '@Strata/data-collector/data-collector.html.twig';
     }
 
     /**

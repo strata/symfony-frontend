@@ -9,30 +9,30 @@
     </parameters>
 
     <services>
-        <service id="strata.query_manager" class="Strata\Data\Query\QueryManager" autowire="false" />
+        <service id="strata.query_manager" class="Strata\Data\Query\QueryManager" />
+        <service id="Strata\Data\Query\QueryManager" alias="strata.query_manager" />
 
         <service id="strata.site" class="Strata\Frontend\Site" />
+        <service id="Strata\Frontend\Site" alias="strata.site" />
 
-        <service id="strata.twig" class="Strata\SymfonyBundle\Twig\TwigExtension" autowire="false">
+        <service id="strata.twig" class="Strata\SymfonyBundle\Twig\TwigExtension">
             <tag>twig.extension</tag>
         </service>
 
-        <service id="strata.event_subscriber.twig" class="Strata\SymfonyBundle\EventSubscriber\TwigEventSubscriber" autowire="false">
+        <service id="strata.event_subscriber.twig" class="Strata\SymfonyBundle\EventSubscriber\TwigEventSubscriber">
             <tag name="kernel.event_subscriber" />
             <argument type="service" id="Twig\Environment" />
             <argument type="service" id="strata.site" />
         </service>
 
-        <service id="strata.event_subscriber.preview_mode" class="Strata\SymfonyBundle\EventSubscriber\PreviewModeEventSubscriber" autowire="false">
+        <service id="strata.event_subscriber.preview_mode" class="Strata\SymfonyBundle\EventSubscriber\PreviewModeEventSubscriber">
             <tag name="kernel.event_subscriber" />
             <argument></argument>
             <argument type="service" id="strata.query_manager" />
         </service>
 
-        <service id="strata.data_collector" class="Strata\SymfonyBundle\DataCollector\StrataDataCollector" autowire="false">
-            <tag name="data_collector"
-                 id="Strata\SymfonyBundle\DataCollector\StrataDataCollector"
-            />
+        <service id="strata.data_collector" class="Strata\SymfonyBundle\DataCollector\StrataDataCollector">
+            <tag name="data_collector" id="strata" />
             <argument type="service" id="strata.query_manager" />
             <argument type="service" id="strata.site" />
         </service>
