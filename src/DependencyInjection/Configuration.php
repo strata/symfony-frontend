@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->arrayNode('preview_mode')
                     ->children()
-                        ->scalarNode('data_provider')->end()
+                        ->scalarNode('data_provider')->defaultNull()->info('Data provider name to set preview mode on')->end()
                     ->end()
                 ->end() // preview_mode
             ->end()

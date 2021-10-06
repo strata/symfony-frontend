@@ -1,0 +1,43 @@
+<!-- config/services.xml -->
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+        https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="strata.preview_mode.data_provider"></parameter>
+    </parameters>
+
+    <services>
+        <service id="strata.query_manager" class="Strata\Data\Query\QueryManager" autowire="false" />
+
+        <service id="strata.site" class="Strata\Frontend\Site" />
+
+        <service id="strata.twig" class="Strata\SymfonyBundle\Twig\TwigExtension" autowire="false">
+            <tag>twig.extension</tag>
+        </service>
+
+        <service id="strata.event_subscriber.twig" class="Strata\SymfonyBundle\EventSubscriber\TwigEventSubscriber" autowire="false">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service">Twig\Environment</argument>
+            <argument type="service" id="strata.site" />
+        </service>
+
+        <service id="strata.event_subscriber.preview_mode" class="Strata\SymfonyBundle\EventSubscriber\PreviewModeEventSubscriber" autowire="false">
+            <tag name="kernel.event_subscriber" />
+            <argument>~</argument>
+            <argument type="service" id="strata.query_manager" />
+        </service>
+
+        <service id="strata.data_collector" class="Strata\SymfonyBundle\DataCollector\StrataDataCollector" autowire="false">
+            <tag name="data_collector"
+                 id="Strata\SymfonyBundle\DataCollector\StrataDataCollector"
+            />
+            <argument type="service" id="strata.query_manager" />
+            <argument type="service" id="strata.site" />
+        </service>
+
+    </services>
+
+</container>
