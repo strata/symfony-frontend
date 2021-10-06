@@ -61,6 +61,9 @@ class PreviewModeEventSubscriber implements EventSubscriberInterface
             $this->manager->getDataProvider($this->dataProvider)->setDefaultOptions(['headers' => [
                 'X-Craft-Token' => $token,
             ]]);
+
+            // Disable cache for all requests in preview mode
+            $this->manager->disableCache();
         }
     }
 
