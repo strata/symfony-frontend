@@ -57,12 +57,18 @@ class StrataDataCollector extends AbstractDataCollector
     public function collect(Request $request, Response $response, \Throwable $exception = null)
     {
         $this->data = [
+            'cacheEnabled' => $this->manager->isCacheEnabled(),
             'locale' => $this->site->getLocale(),
             'textDirection' => $this->site->getTextDirection(),
             'localeData' => $this->site->getLocaleData(),
             'previewMode' => ($response->headers->get('X-Frontend-Content') === 'PREVIEW') ? true : false,
             'queryManager' => $this->manager->getDataCollector(),
         ];
+    }
+
+    public function getCacheEnabled()
+    {
+        return $this->data['cacheEnabled'];
     }
 
     public function getLocale(): string
@@ -83,6 +89,11 @@ class StrataDataCollector extends AbstractDataCollector
     public function getPreviewMode(): bool
     {
         return $this->data['previewMode'];
+    }
+
+    public function getDataProviders(): array
+    {
+        return $this->data['queryManager']['dataProviders'];
     }
 
     public function getQueries(): array

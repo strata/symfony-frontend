@@ -45,7 +45,16 @@
 {% block panel %}
     {# Optional, for showing the most details. #}
     <h2>Strata</h2>
+    <p>Query manager caching is {{ (collector.cacheEnabled ? 'enabled' : 'disabled')  }} at time of collecting data.</p>
+
     <div class="metrics">
+        <div class="metric">
+            <span class="value">{{ include('@WebProfiler/Icon/' ~ (collector.previewMode ? 'yes' : 'no') ~ '.svg') }}</span>
+            <span class="label">Preview mode</span>
+        </div>
+
+        <div class="metric-divider"></div>
+
         <div class="metric">
             <span class="value">{{ collector.totalQueries }}</span>
             <span class="label">Queries</span>
@@ -54,7 +63,9 @@
             <span class="value">{{ collector.totalQueriesCached }}</span>
             <span class="label">Cached</span>
         </div>
+
         <div class="metric-divider"></div>
+
         <div class="metric">
             <span class="value">{{ collector.locale }}</span>
             <span class="label">Locale</span>
@@ -63,11 +74,38 @@
             <span class="value">{{ collector.textDirection }}</span>
             <span class="label">Text direction</span>
         </div>
-        <div class="metric">
-            <span class="value">{{ include('@WebProfiler/Icon/' ~ (collector.previewMode ? 'yes' : 'no') ~ '.svg') }}</span>
-            <span class="label">Preview mode</span>
-        </div>
     </div>
+
+    <h3>Data providers</h3>
+
+    {% if collector.dataProviders is empty %}
+    <div class="empty">
+        <p>No data providers are setup.</p>
+    </div>
+    {% else %}
+
+        <table>
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Class</th>
+                <th scope="col">Base URI</th>
+                <th scope="col">Cache enabled</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in collector.dataProviders %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.class }}</td>
+                    <td>{{ item.baseUri }}</th>
+                    <td>{{ item.cacheEnabled ? '<span class="label status-success">Yes</span>' : 'No' }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    {% endif %}
 
     <h3>Queries</h3>
 
@@ -109,6 +147,29 @@
         </table>
 
     {% endif %}
+
+{#    {% if collector.queries is not empty %}#}
+
+{#    <table>#}
+{#        <thead>#}
+{#        <tr>#}
+{#            <th scope="col">Name</th>#}
+{#            <th scope="col">HTTP status</th>#}
+{#            <th scope="col">Response headers</th>#}
+{#        </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#        {% for item in collector.queries %}#}
+{#            <tr>#}
+{#                <td>{{ item.name }}</td>#}
+{#                <td>{{ item.httpStatusCode }}</td>#}
+{#                <td>{{ dump(item.responseHeaders) }}</td>#}
+{#            </tr>#}
+{#        {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+
+{#    {% endif %}#}
 
     <h3>Site data for locale: {{ collector.locale }}</h3>
 
