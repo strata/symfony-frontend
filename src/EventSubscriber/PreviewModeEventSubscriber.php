@@ -1,6 +1,6 @@
 <?php
 
-namespace Strata\Symfony\EventSubscriber;
+namespace Strata\SymfonyBundle\EventSubscriber;
 
 use Strata\Data\Exception\MissingDataProviderException;
 use Strata\Data\Query\QueryManager;
@@ -10,14 +10,15 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 /**
  * CraftCMS preview mode
+ *
  */
-class PreviewMode implements EventSubscriberInterface
+class PreviewModeEventSubscriber implements EventSubscriberInterface
 {
     private QueryManager $manager;
     private bool $previewMode = false;
     private string $dataProvider;
 
-    public function __construct(QueryManager $manager, string $dataProvider)
+    public function __construct(string $dataProvider, QueryManager $manager)
     {
         $this->manager = $manager;
         $this->dataProvider = $dataProvider;
@@ -37,7 +38,7 @@ class PreviewMode implements EventSubscriberInterface
     /**
      * Detect Craft preview token and pass back in HTTP requests
      *
-     * URL format: x-craft-live-preview=abc123
+     * URL format: x-craft-live-preview=abc123&token=abc123
      *
      * @see https://nystudio107.com/blog/headless-preview-in-craft-cms
      * @param ControllerEvent $event
@@ -60,6 +61,9 @@ class PreviewMode implements EventSubscriberInterface
             $this->manager->getDataProvider($this->dataProvider)->setDefaultOptions(['headers' => [
                 'X-Craft-Token' => $token,
             ]]);
+
+            // Disable cache for all requests in preview mode
+            $this->manager->disableCache();
         }
     }
 

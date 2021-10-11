@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Strata\Symfony;
+namespace Strata\SymfonyBundle;
 
 use Symfony\Bundle\FrameworkBundle\HttpCache\HttpCache;
 
