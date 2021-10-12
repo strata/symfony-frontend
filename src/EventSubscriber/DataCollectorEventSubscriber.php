@@ -29,17 +29,17 @@ class DataCollectorEventSubscriber  implements EventSubscriberInterface
 
     public function start(StartEvent $event)
     {
-        dump($event);
+//        dump($event);
         $this->data[] = $event->getUri();
     }
 
     public function success(SuccessEvent $event)
     {
-        dump($event);
+//        dump($event);
     }
 
     public function failure(FailureEvent $event)
     {
-        dump($event);
+//        dump($event);
     }
 }
