@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Strata\Symfony\TwigExtension;
+use Strata\SymfonyBundle\Twig\TwigExtension;
 use Twig\Environment;
 use Twig\Loader\ArrayLoader;
 
@@ -164,5 +164,44 @@ class TwigTest extends TestCase
         $this->assertStringContainsString('<h4 id="test-heading">Test heading</h4>', $twig->render('test2', ['content' => $html]));
         $this->assertStringContainsString('<h4 id="test-heading-1">Test heading</h4>', $twig->render('test2', ['content' => $html]));
         $this->assertStringContainsString('<h4 id="test-heading-2">Test heading</h4>', $twig->render('test2', ['content' => $html]));
+    }
+
+    public function testRelativeUrl()
+    {
+        $loader = new ArrayLoader([
+            'test' => '{{ url | relative_url }}',
+        ]);
+        $twig = new Environment($loader);
+        $twig->addExtension(new TwigExtension());
+
+        $this->assertEquals('/contact/', $twig->render('test', ['url' => 'https://domain.com/contact/']));
+        $this->assertEquals('/contact/child-page', $twig->render('test', ['url' => 'https://domain.com/contact/child-page']));
+        $this->assertEquals('/contact/child-page?foo=bar#bookmark', $twig->render('test', ['url' => 'https://domain.com/contact/child-page?foo=bar#bookmark']));
+    }
+
+    public function testTrailingSlash()
+    {
+        $loader = new ArrayLoader([
+            'test1' => '{{ url | trailing_slash }}',
+            'test2' => '{{ url | no_trailing_slash }}',
+        ]);
+        $twig = new Environment($loader);
+        $twig->addExtension(new TwigExtension());
+
+        $this->assertEquals('/contact/', $twig->render('test1', ['url' => '/contact']));
+        $this->assertEquals('/contact', $twig->render('test2', ['url' => '/contact/']));
+    }
+
+    public function testCombinedFilters()
+    {
+        $loader = new ArrayLoader([
+            'test1' => '{{ url | relative_url | trailing_slash }}',
+            'test2' => '{{ url | relative_url | no_trailing_slash }}',
+        ]);
+        $twig = new Environment($loader);
+        $twig->addExtension(new TwigExtension());
+
+        $this->assertEquals('/contact/', $twig->render('test1', ['url' => 'https://domain.com/contact']));
+        $this->assertEquals('/contact', $twig->render('test2', ['url' => 'https://domain.com/contact/']));
     }
 }

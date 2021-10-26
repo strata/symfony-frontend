@@ -17,5 +17,4 @@ class StrataBundle extends Bundle
     {
         return dirname(__DIR__);
     }
-
 }

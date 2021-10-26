@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Strata\SymfonyBundle\Twig;
 
 use Strata\Frontend\View\TableOfContents;
+use Strata\Frontend\View\Url;
 use Strata\Frontend\View\ViewFilters;
 use Strata\Frontend\View\ViewFunctions;
 use Strata\Frontend\View\ViewTests;
@@ -44,9 +45,11 @@ class TwigExtension extends AbstractExtension
         return [
             new TwigFilter('excerpt', [$helpers, 'excerpt']),
             new TwigFilter('build_version', [$helpers, 'buildVersion']),
-            new TwigFilter('slugify', [$helpers, 'slugify']),
-            new TwigFilter('fix_url', [$helpers, 'fixUrl']),
-
+            new TwigFilter('slugify', [Url::class, 'slugify']),
+            new TwigFilter('fix_url', [Url::class, 'fixUrl']),
+            new TwigFilter('relative_url', [Url::class, 'relativeUrl']),
+            new TwigFilter('trailing_slash', [Url::class, 'addTrailingSlash']),
+            new TwigFilter('no_trailing_slash', [Url::class, 'removeTrailingSlash']),
         ];
     }
 
@@ -79,5 +82,4 @@ class TwigExtension extends AbstractExtension
         }
         return $toc;
     }
-
 }

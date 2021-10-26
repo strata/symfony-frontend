@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Strata\SymfonyBundle\EventSubscriber;
 
 use Strata\Frontend\Site;
@@ -29,5 +31,4 @@ class TwigEventSubscriber implements EventSubscriberInterface
             'kernel.controller' => 'onKernelController',
         ];
     }
-
 }
