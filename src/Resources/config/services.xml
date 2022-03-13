@@ -20,6 +20,7 @@
         </service>
 
         <service id="strata.response_helper" class="Strata\SymfonyBundle\ResponseHelper\SymfonyResponseHelper" />
+        <service id="Strata\SymfonyBundle\ResponseHelper\SymfonyResponseHelper" alias="strata.response_helper" />
 
         <service id="strata.event_subscriber.twig" class="Strata\SymfonyBundle\EventSubscriber\TwigEventSubscriber">
             <tag name="kernel.event_subscriber" />
