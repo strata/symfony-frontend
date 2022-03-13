@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Strata\SymfonyBundle\ResponseHelper;
 
+use Strata\Data\Helper\UnionTypes;
+use Strata\Frontend\ResponseHelper\HeaderValue;
 use Strata\Frontend\ResponseHelper\ResponseHelperAbstract;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -12,42 +14,21 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class SymfonyResponseHelper extends ResponseHelperAbstract
 {
-    private Response $response;
-
-    public function __construct(Response $response)
-    {
-        $this->setResponse($response);
-    }
-
-    public function setResponse(ResponseInterface $response): self
-    {
-        $this->response = $response;
-        return $this;
-    }
-
-    public function getResponse(): ResponseInterface
-    {
-        return $this->response;
-    }
-
     /**
-     * Set a header to the response object
-     * @param string $name
-     * @param string $value
-     * @param bool $replace If true, replace header, if false, append header
-     * @return $this
+     * Apply headers to response object and return response
+     * @param Response $response
+     * @return Response
      */
-    public function setHeader(string $name, string $value, bool $replace = true): self
+    public function apply($response): Response
     {
-        if ($replace) {
-            $this->setResponse($this->response->withHeader($name, $value));
-        } else {
-            $this->setResponse($this->response->withAddedHeader($name, $value));
+        UnionTypes::assert('response', $response, Response::class);
+
+        foreach ($this->getHeaders() as $name => $values) {
+            /** @var HeaderValue $header */
+            foreach ($values as $header) {
+                $response->headers->set($name, $header->getValue(), $header->isReplace());
+            }
         }
-
-        $this->response->headers->set($this->getTagsHeaderName(), $this->getTagsHeaderValue(), $replace);
-
-        return $this;
+        return $response;
     }
-
 }

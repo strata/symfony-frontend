@@ -9,7 +9,6 @@ use Twig\Loader\ArrayLoader;
 
 class TwigTest extends TestCase
 {
-
     public function testSlugify()
     {
         $loader = new ArrayLoader([

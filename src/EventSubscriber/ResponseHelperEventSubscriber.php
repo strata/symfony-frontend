@@ -12,14 +12,16 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
 /**
  * Add response headers
  */
-class ResponseTagsEventSubscriber implements EventSubscriberInterface
+class ResponseHelperEventSubscriber implements EventSubscriberInterface
 {
-    private SymfonyResponseHelper $responseHelper;
+    private SymfonyResponseHelper $helper;
+    private ResponseTagger $responseTagger;
     private QueryManager $manager;
 
-    public function __construct(SymfonyResponseHelper $responseHelper, QueryManager $manager)
+    public function __construct(SymfonyResponseHelper $helper, ResponseTagger $responseTagger, QueryManager $manager)
     {
-        $this->responseHelper = $responseHelper;
+        $this->helper = $helper;
+        $this->responseTagger = $responseTagger;
         $this->manager = $manager;
     }
 
@@ -44,8 +46,10 @@ class ResponseTagsEventSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $this->responseHelper->setResponse($event->getResponse());
-        $this->responseHelper->addTagsFromQueryManager($this->manager);
-        $this->responseHelper->setHeadersFromResponseTagger();
+        // Apply response tags from query manager
+        $this->helper->applyResponseTagsFromQuery($this->responseTagger, $this->manager);
+
+        // Apply any headers set in response helper
+        $this->helper->apply($event->getResponse());
     }
 }
