@@ -19,6 +19,8 @@
             <tag>twig.extension</tag>
         </service>
 
+        <service id="strata.response_helper" class="Strata\SymfonyBundle\ResponseHelper\SymfonyResponseHelper" />
+
         <service id="strata.event_subscriber.twig" class="Strata\SymfonyBundle\EventSubscriber\TwigEventSubscriber">
             <tag name="kernel.event_subscriber" />
             <argument type="service" id="Twig\Environment" />
