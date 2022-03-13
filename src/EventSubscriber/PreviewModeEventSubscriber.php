@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Strata\SymfonyBundle\EventSubscriber;
 
 use Strata\Data\Exception\MissingDataProviderException;
@@ -86,5 +88,4 @@ class PreviewModeEventSubscriber implements EventSubscriberInterface
             $response->headers->set('X-Frontend-Content', 'PUBLISHED');
         }
     }
-
 }

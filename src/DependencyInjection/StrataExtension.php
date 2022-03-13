@@ -16,7 +16,7 @@ class StrataExtension extends ConfigurableExtension
     {
         $loader = new XmlFileLoader(
             $container,
-            new FileLocator(__DIR__.'/../../config')
+            new FileLocator(__DIR__ . '/../Resources/config')
         );
         $loader->load('services.xml');
 
@@ -24,5 +24,4 @@ class StrataExtension extends ConfigurableExtension
         $definition = $container->getDefinition('strata.event_subscriber.preview_mode');
         $definition->replaceArgument(0, $mergedConfig['preview_mode']['data_provider']);
     }
-
 }
