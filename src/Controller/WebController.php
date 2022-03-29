@@ -20,7 +20,6 @@ use Psr\SimpleCache\CacheInterface;
  */
 class WebController extends AbstractController
 {
-
     /**
      * Robots.txt file
      *

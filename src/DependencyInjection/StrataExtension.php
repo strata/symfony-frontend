@@ -20,13 +20,12 @@ class StrataExtension extends ConfigurableExtension
         $loader->load('services.xml');
         $loader->load('data_collector.xml');
 
+        if ($mergedConfig['tags']['enabled']) {
+            $loader->load('response_tagger.xml');
+        }
+
         // Pass params to service classes
         $definition = $container->getDefinition('strata.event_subscriber.preview_mode');
         $definition->replaceArgument(0, $mergedConfig['preview_mode']['data_provider']);
-
-        // Load response tagger is loaded via FOSHttpCacheBundle
-        if ($container->has('fos_http_cache.response_tagger')) {
-            $loader->load('response_tagger.xml');
-        }
     }
 }

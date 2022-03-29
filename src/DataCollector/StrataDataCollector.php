@@ -110,5 +110,4 @@ class StrataDataCollector extends AbstractDataCollector
     {
         return $this->data['queryManager']['cached'];
     }
-
 }

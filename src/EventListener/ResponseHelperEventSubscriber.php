@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Strata\SymfonyBundle\EventSubscriber;
+namespace Strata\SymfonyBundle\EventListener;
 
-use Strata\Data\Query\QueryManager;
 use Strata\SymfonyBundle\ResponseHelper\SymfonyResponseHelper;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
@@ -15,14 +14,10 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
 class ResponseHelperEventSubscriber implements EventSubscriberInterface
 {
     private SymfonyResponseHelper $helper;
-    private ResponseTagger $responseTagger;
-    private QueryManager $manager;
 
-    public function __construct(SymfonyResponseHelper $helper, ResponseTagger $responseTagger, QueryManager $manager)
+    public function __construct(SymfonyResponseHelper $helper = null)
     {
         $this->helper = $helper;
-        $this->responseTagger = $responseTagger;
-        $this->manager = $manager;
     }
 
     /**
@@ -46,10 +41,8 @@ class ResponseHelperEventSubscriber implements EventSubscriberInterface
             return;
         }
 
-        // Apply response tags from query manager
-        $this->helper->applyResponseTagsFromQuery($this->responseTagger, $this->manager);
-
-        // Apply any headers set in response helper
+        // Apply headers from response helper
         $this->helper->apply($event->getResponse());
     }
+
 }

@@ -9,12 +9,10 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder('strata');
 
-        //strata.preview_mode.data_provider
         $treeBuilder->getRootNode()
             ->children()
                 ->arrayNode('preview_mode')
@@ -22,10 +20,15 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('data_provider')->defaultNull()->info('Data provider name to set preview mode on')->end()
                     ->end()
                 ->end() // preview_mode
+                ->arrayNode('tags')
+                    ->children()
+                        ->booleanNode('enabled')->defaultFalse()->info('Whether cache tags are enabled')->end()
+                    ->end()
+                ->end() // tags
+
             ->end()
         ;
 
         return $treeBuilder;
     }
-
 }
