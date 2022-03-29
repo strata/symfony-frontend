@@ -20,15 +20,15 @@
         </service>
 
         <service id="strata.event_listener.twig" class="Strata\SymfonyBundle\EventListener\TwigEventSubscriber">
-            <tag name="kernel.event_subscriber" />
             <argument id="Twig\Environment" type="service" />
             <argument id="strata.site" type="service" />
+            <tag name="kernel.event_subscriber" />
         </service>
 
         <service id="strata.event_listener.preview_mode" class="Strata\SymfonyBundle\EventListener\PreviewModeEventSubscriber">
-            <tag name="kernel.event_subscriber" />
             <argument></argument>
             <argument type="service" id="strata.query_manager" />
+            <tag name="kernel.event_subscriber" />
         </service>
 
         <service id="strata.event_listener.response_tags" class="Strata\SymfonyBundle\EventListener\ResponseHelperEventSubscriber">
