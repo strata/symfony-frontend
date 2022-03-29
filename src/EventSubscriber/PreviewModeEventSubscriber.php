@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Strata\SymfonyBundle\EventListener;
+namespace Strata\SymfonyBundle\EventSubscriber;
 
 use Strata\Data\Exception\MissingDataProviderException;
 use Strata\Data\Query\QueryManager;

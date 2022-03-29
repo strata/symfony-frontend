@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Strata\SymfonyBundle\EventListener;
+namespace Strata\SymfonyBundle\EventSubscriber;
 
 use Strata\SymfonyBundle\ResponseHelper\SymfonyResponseHelper;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

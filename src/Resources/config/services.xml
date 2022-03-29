@@ -9,30 +9,33 @@
     </parameters>
 
     <services>
+        <service id="strata.query_manager" class="Strata\Data\Query\QueryManager" />
         <service id="Strata\Data\Query\QueryManager" alias="strata.query_manager" />
 
+        <service id="strata.site" class="Strata\Frontend\Site" />
         <service id="Strata\Frontend\Site" alias="strata.site" />
 
+        <service id="strata.response_helper" class="Strata\SymfonyBundle\ResponseHelper\SymfonyResponseHelper" />
         <service id="Strata\SymfonyBundle\ResponseHelper\SymfonyResponseHelper" alias="strata.response_helper" />
 
         <service id="strata.twig" class="Strata\SymfonyBundle\Twig\TwigExtension">
             <tag>twig.extension</tag>
         </service>
 
-        <service id="strata.event_subscriber.twig" class="Strata\SymfonyBundle\EventListener\TwigEventSubscriber">
+        <service id="strata.event_subscriber.twig" class="Strata\SymfonyBundle\EventSubscriber\TwigEventSubscriber">
+            <argument type="service" id="Twig\Environment" />
+            <argument type="service" id="strata.site" />
             <tag name="kernel.event_subscriber" />
-            <argument id="Twig\Environment" type="service" />
-            <argument id="strata.site" type="service" />
         </service>
 
-        <service id="strata.event_subscriber.preview_mode" class="Strata\SymfonyBundle\EventListener\PreviewModeEventSubscriber">
-            <tag name="kernel.event_subscriber" />
+        <service id="strata.event_subscriber.preview_mode" class="Strata\SymfonyBundle\EventSubscriber\PreviewModeEventSubscriber">
             <argument></argument>
             <argument type="service" id="strata.query_manager" />
+            <tag name="kernel.event_subscriber" />
         </service>
 
-        <service id="strata_frontend.event_subscriber.response_tags" class="Strata\SymfonyBundle\EventListener\ResponseHelperEventSubscriber">
-            <argument id="strata.response_helper" type="service" />
+        <service id="strata.event_subscriber.response_tags" class="Strata\SymfonyBundle\EventSubscriber\ResponseHelperEventSubscriber">
+            <argument type="service" id="strata.response_helper" />
             <tag name="kernel.event_subscriber" />
         </service>
 
