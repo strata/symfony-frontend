@@ -35,7 +35,7 @@
         </service>
 
         <service id="strata.event_subscriber.response_tags" class="Strata\SymfonyBundle\EventSubscriber\ResponseHelperEventSubscriber">
-            <argument type="service" id="strata.response_helper" />
+            <argument id="strata.response_helper" type="service" />
             <tag name="kernel.event_subscriber" />
         </service>
 

@@ -6,7 +6,7 @@
 
     <services>
 
-        <service id="strata_frontend.event_subscriber.response_tags" class="Strata\SymfonyBundle\EventSubscriber\ResponseTagsEventSubscriber">
+        <service id="strata.event_subscriber.response_tags" class="Strata\SymfonyBundle\EventSubscriber\ResponseTagsEventSubscriber">
             <argument id="fos_http_cache.http.symfony_response_tagger" type="service" />
             <argument id="strata.query_manager" type="service" />
             <tag name="kernel.event_subscriber" />

@@ -25,7 +25,7 @@ class StrataExtension extends ConfigurableExtension
         }
 
         // Pass params to service classes
-        $definition = $container->getDefinition('strata.event_subscriber.preview_mode');
+        $definition = $container->getDefinition('strata.event_listener.preview_mode');
         $definition->replaceArgument(0, $mergedConfig['preview_mode']['data_provider']);
     }
 }
