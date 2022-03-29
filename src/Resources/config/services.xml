@@ -19,19 +19,19 @@
             <tag>twig.extension</tag>
         </service>
 
-        <service id="strata.event_subscriber.twig" class="Strata\SymfonyBundle\EventListener\TwigEventSubscriber">
+        <service id="strata.event_listener.twig" class="Strata\SymfonyBundle\EventListener\TwigEventSubscriber">
             <tag name="kernel.event_subscriber" />
             <argument id="Twig\Environment" type="service" />
             <argument id="strata.site" type="service" />
         </service>
 
-        <service id="strata.event_subscriber.preview_mode" class="Strata\SymfonyBundle\EventListener\PreviewModeEventSubscriber">
+        <service id="strata.event_listener.preview_mode" class="Strata\SymfonyBundle\EventListener\PreviewModeEventSubscriber">
             <tag name="kernel.event_subscriber" />
             <argument></argument>
             <argument type="service" id="strata.query_manager" />
         </service>
 
-        <service id="strata_frontend.event_subscriber.response_tags" class="Strata\SymfonyBundle\EventListener\ResponseHelperEventSubscriber">
+        <service id="strata.event_listener.response_tags" class="Strata\SymfonyBundle\EventListener\ResponseHelperEventSubscriber">
             <argument id="strata.response_helper" type="service" />
             <tag name="kernel.event_subscriber" />
         </service>
