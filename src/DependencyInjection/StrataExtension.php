@@ -20,7 +20,7 @@ class StrataExtension extends ConfigurableExtension
         $loader->load('services.xml');
         $loader->load('data_collector.xml');
 
-        if ($mergedConfig['tags']['enabled']) {
+        if (isset($mergedConfig['tags']) && isset($mergedConfig['tags']['enabled']) && $mergedConfig['tags']['enabled']) {
             $loader->load('response_tagger.xml');
         }
 
