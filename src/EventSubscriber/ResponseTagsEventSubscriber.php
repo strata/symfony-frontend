@@ -30,8 +30,12 @@ class ResponseTagsEventSubscriber implements EventSubscriberInterface
      */
     public static function getSubscribedEvents(): array
     {
+        /**
+         * onKernelResponse event needs to be higher than
+         * FOS\HttpCacheBundle\EventListener\TagListener::onKernelResponse()
+         */
         return [
-            ResponseEvent::class => 'onKernelResponse',
+            ResponseEvent::class => ['onKernelResponse', 10],
         ];
     }
 
