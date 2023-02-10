@@ -60,5 +60,4 @@ class ResponseTagsEventSubscriber implements EventSubscriberInterface
         // Add custom response header (since some cache proxies strip cache tag header)
         $event->getResponse()->headers->set(self::TAGS_HEADER_NAME, $this->responseTagger->getTagsHeaderValue());
     }
-
 }
