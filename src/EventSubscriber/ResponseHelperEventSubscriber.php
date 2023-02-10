@@ -44,5 +44,4 @@ class ResponseHelperEventSubscriber implements EventSubscriberInterface
         // Apply headers from response helper
         $this->helper->apply($event->getResponse());
     }
-
 }
