@@ -2,10 +2,6 @@
 
 [![license][license-badge]][LICENSE]
 
-Includes:
-* Twig helpers
-* HTTP cache for full-page caching
-
 ## Status
 Please note this software is in development, usage may change before the 1.0 release.
 
@@ -23,11 +19,7 @@ Install via Composer:
 composer require strata/symfony-frontend:^0.8
 ```
 
-See [installation](docs/installation.md)
-
-## Documentation
-
-See [docs](docs/README.md) 
+Please see [Strata Frontend installation docs](https://docs.strata.dev/frontend/getting-started/installation).
 
 ## Contributing
 
