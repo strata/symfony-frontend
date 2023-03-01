@@ -1,6 +1,6 @@
 {
     "name": "strata/symfony-frontend",
-    "description": "TODO",
+    "description": "Integration with Symfony framework for Strata Frontend",
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [
@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=7.4",
-        "strata/frontend": "dev-release/0.8.0 as 0.8.0",
+        "strata/frontend": "^0.8",
         "symfony/http-kernel": "^5.3",
         "twig/twig": "^3.0",
         "symfony/framework-bundle": "^5.3"
