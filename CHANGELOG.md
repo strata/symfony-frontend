@@ -6,10 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.9.0](https://github.com/strata/symfony-frontend/compare/v0.8.2...v0.9.0) (2024-06-26)
 
-
 ### Features
 
-* testing release GH action ([279b4ec](https://github.com/strata/symfony-frontend/commit/279b4ec8101e7921a7c5688e0171d47a14c50f9e))
+* Update to PHP 8.1+
+* Support Symfony 6 and 7
 
 ## 0.8.0 - 2021-05-04
 
