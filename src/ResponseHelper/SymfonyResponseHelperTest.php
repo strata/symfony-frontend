@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Test\ResponseHelper;
+namespace Strata\SymfonyBundle\ResponseHelper;
 
 use FOS\HttpCache\ResponseTagger;
 use PHPUnit\Framework\TestCase;
 use Strata\Data\Http\Rest;
 use Strata\Data\Query\Query;
 use Strata\Data\Query\QueryManager;
-use Strata\SymfonyBundle\ResponseHelper\SymfonyResponseHelper;
 use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
 use Symfony\Component\HttpFoundation\Response;

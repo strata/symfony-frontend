@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Strata\SymfonyBundle\ResponseHelper;
 
-use Strata\Data\Helper\UnionTypes;
 use Strata\Frontend\ResponseHelper\HeaderValue;
 use Strata\Frontend\ResponseHelper\ResponseHelperAbstract;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +20,9 @@ class SymfonyResponseHelper extends ResponseHelperAbstract
      */
     public function apply($response): Response
     {
-        UnionTypes::assert('response', $response, Response::class);
+        if ($response instanceof Response === false) {
+            throw new \InvalidArgumentException('Response must be an instance of Symfony\Component\HttpFoundation\Response');
+        }
 
         foreach ($this->getHeaders() as $name => $values) {
             /** @var HeaderValue $header */
