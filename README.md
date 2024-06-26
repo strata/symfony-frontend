@@ -7,8 +7,8 @@ Please note this software is in development, usage may change before the 1.0 rel
 
 ## Requirements
 
-* PHP 7.4+
-* Symfony 5.2+
+* PHP 8.1+
+* Symfony 6.4+
 * [Composer](https://getcomposer.org/)
 
 ## Installation
@@ -16,10 +16,10 @@ Please note this software is in development, usage may change before the 1.0 rel
 Install via Composer:
 
 ```
-composer require strata/symfony-frontend:^0.8
+composer require strata/symfony-frontend:^0.9
 ```
 
-Please see [Strata Frontend installation docs](https://docs.strata.dev/frontend/getting-started/installation).
+Please see [Strata Frontend installation docs](https://docs.strata.dev/frontend/installation).
 
 ## Contributing
 
