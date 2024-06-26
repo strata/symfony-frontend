@@ -48,8 +48,7 @@ jobs:
 
       - name: Install Symfony ${{ matrix.symfony }} packages
         run: |
-          composer update symfony/http-kernel:${{ matrix.symfony }}
-          composer update symfony/yaml:${{ matrix.symfony }}
+          composer update symfony/http-kernel:^${{ matrix.symfony }}
 
       - name: Lint PHP files
         run: |
