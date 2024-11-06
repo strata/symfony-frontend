@@ -54,7 +54,7 @@ class PreviewModeEventSubscriber implements EventSubscriberInterface
         }
 
         $request = $event->getRequest();
-        $craftPreview = $request->get('x-craft-live-preview');
+        $craftPreview = $request->get('x-craft-live-preview', $request->get('x-craft-preview'));
         $token = $request->get('token');
         if (!empty($craftPreview) && !empty($token)) {
             $this->previewMode = true;
