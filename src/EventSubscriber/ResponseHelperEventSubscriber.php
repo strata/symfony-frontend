@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
  */
 class ResponseHelperEventSubscriber implements EventSubscriberInterface
 {
-    public function __construct(private SymfonyResponseHelper $helper = null)
+    public function __construct(private SymfonyResponseHelper $helper)
     {
     }
 
