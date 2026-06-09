@@ -16,13 +16,8 @@ class ResponseTagsEventSubscriber implements EventSubscriberInterface
 {
     const TAGS_HEADER_NAME = 'X-Strata-Cache-Tags';
 
-    private ResponseTagger $responseTagger;
-    private QueryManager $manager;
-
-    public function __construct(ResponseTagger $responseTagger, QueryManager $manager)
+    public function __construct(private ResponseTagger $responseTagger, private QueryManager $manager)
     {
-        $this->responseTagger = $responseTagger;
-        $this->manager = $manager;
     }
 
     /**

@@ -32,10 +32,10 @@ class TwigExtension extends AbstractExtension
     {
         $helpers = new ViewFunctions();
         return [
-            new TwigFunction('not_empty', [$helpers, 'notEmpty'], ['is_variadic' => true]),
-            new TwigFunction('all_not_empty', [$helpers, 'allNotEmpty'], ['is_variadic' => true]),
-            new TwigFunction('staging_banner', [$helpers, 'stagingBanner'], ['is_safe' => ['html']]),
-            new TwigFunction('table_of_contents', [$this, 'tableOfContents'], ['is_safe' => ['html'], 'needs_environment' => true]),
+            new TwigFunction('not_empty', $helpers->notEmpty(...), ['is_variadic' => true]),
+            new TwigFunction('all_not_empty', $helpers->allNotEmpty(...), ['is_variadic' => true]),
+            new TwigFunction('staging_banner', $helpers->stagingBanner(...), ['is_safe' => ['html']]),
+            new TwigFunction('table_of_contents', $this->tableOfContents(...), ['is_safe' => ['html'], 'needs_environment' => true]),
         ];
     }
 
@@ -43,13 +43,13 @@ class TwigExtension extends AbstractExtension
     {
         $helpers = new ViewFilters();
         return [
-            new TwigFilter('excerpt', [$helpers, 'excerpt']),
-            new TwigFilter('build_version', [$helpers, 'buildVersion']),
-            new TwigFilter('slugify', [Url::class, 'slugify']),
-            new TwigFilter('fix_url', [Url::class, 'fixUrl']),
-            new TwigFilter('relative_url', [Url::class, 'relativeUrl']),
-            new TwigFilter('trailing_slash', [Url::class, 'addTrailingSlash']),
-            new TwigFilter('no_trailing_slash', [Url::class, 'removeTrailingSlash']),
+            new TwigFilter('excerpt', $helpers->excerpt(...)),
+            new TwigFilter('build_version', $helpers->buildVersion(...)),
+            new TwigFilter('slugify', Url::slugify(...)),
+            new TwigFilter('fix_url', Url::fixUrl(...)),
+            new TwigFilter('relative_url', Url::relativeUrl(...)),
+            new TwigFilter('trailing_slash', Url::addTrailingSlash(...)),
+            new TwigFilter('no_trailing_slash', Url::removeTrailingSlash(...)),
         ];
     }
 
@@ -57,7 +57,7 @@ class TwigExtension extends AbstractExtension
     {
         $helpers = new ViewTests();
         return [
-            new TwigTest('is_prod', [$helpers, 'isProd']),
+            new TwigTest('is_prod', $helpers->isProd(...)),
         ];
     }
 

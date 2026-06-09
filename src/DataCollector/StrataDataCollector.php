@@ -13,19 +13,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class StrataDataCollector extends AbstractDataCollector
 {
-    private ?Site $site = null;
-    private ?QueryManager $manager = null;
-
     /**
      * Populate other services used to collect data
      *
      * @param QueryManager $manager
      * @param Site $site
      */
-    public function __construct(QueryManager $manager, Site $site)
+    public function __construct(private ?QueryManager $manager, private ?Site $site)
     {
-        $this->manager = $manager;
-        $this->site = $site;
     }
 
     public function getName(): string

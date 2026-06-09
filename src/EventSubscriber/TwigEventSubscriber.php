@@ -11,13 +11,8 @@ use Twig\Environment;
 
 class TwigEventSubscriber implements EventSubscriberInterface
 {
-    private Environment $twig;
-    private Site $site;
-
-    public function __construct(Environment $twig, Site $site)
+    public function __construct(private Environment $twig, private Site $site)
     {
-        $this->twig = $twig;
-        $this->site = $site;
     }
 
     public function onKernelController(ControllerEvent $event)
