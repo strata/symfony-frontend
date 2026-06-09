@@ -5,16 +5,17 @@ declare(strict_types=1);
 namespace Strata\SymfonyBundle;
 
 use Strata\Symfony\DependencyInjection\StrataExtension;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
 /**
  * Enable in config/bundles.php via:
  *     Strata\Symfony\StrataBundle::class => ['all' => true],
  */
-class StrataBundle extends Bundle
+class StrataBundle extends AbstractBundle
 {
-    public function getPath(): string
+    public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
-        return dirname(__DIR__);
+        // load a PHP or YAML file
+        $container->import('../config/services.php');
     }
 }

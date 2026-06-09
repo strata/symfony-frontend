@@ -13,10 +13,28 @@ Please note this software is in development, usage may change before the 1.0 rel
 
 ## Installation
 
-Install via Composer:
+### Applications that use Symfony Flex
+
+If your application is using Symfony Flex, you can install via:
 
 ```
 composer require strata/symfony-frontend
+```
+
+### Applications that don't use Symfony Flex
+
+Install via:
+
+```
+composer require strata/symfony-frontend
+```
+
+Enable in `config/bundles.php`:
+
+```
+return [
+    Strata\Symfony\StrataBundle::class => ['all' => true],
+]
 ```
 
 Please see [Strata Frontend installation docs](https://docs.strata.dev/frontend/installation).
