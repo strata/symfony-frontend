@@ -7,8 +7,8 @@ Please note this software is in development, usage may change before the 1.0 rel
 
 ## Requirements
 
-* PHP 8.1+
-* Symfony 6.4+
+* PHP 8.2+
+* Symfony 7.4+
 * [Composer](https://getcomposer.org/)
 
 ## Installation
