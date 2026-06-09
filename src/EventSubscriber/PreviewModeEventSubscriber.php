@@ -16,14 +16,10 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
  */
 class PreviewModeEventSubscriber implements EventSubscriberInterface
 {
-    private QueryManager $manager;
     private bool $previewMode = false;
-    private string $dataProvider;
 
-    public function __construct(string $dataProvider, QueryManager $manager)
+    public function __construct(private string $dataProvider, private QueryManager $manager)
     {
-        $this->manager = $manager;
-        $this->dataProvider = $dataProvider;
     }
 
     /**
