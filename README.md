@@ -16,7 +16,7 @@ Please note this software is in development, usage may change before the 1.0 rel
 Install via Composer:
 
 ```
-composer require strata/symfony-frontend:^0.9
+composer require strata/symfony-frontend
 ```
 
 Please see [Strata Frontend installation docs](https://docs.strata.dev/frontend/installation).
