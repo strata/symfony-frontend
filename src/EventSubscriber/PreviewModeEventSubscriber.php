@@ -49,9 +49,10 @@ class PreviewModeEventSubscriber implements EventSubscriberInterface
             return;
         }
 
+        /** @var Symfony\Component\HttpFoundation\Request $request */
         $request = $event->getRequest();
-        $craftPreview = $request->get('x-craft-live-preview', $request->get('x-craft-preview'));
-        $token = $request->get('token');
+        $craftPreview = $request->query->get('x-craft-live-preview', $request->query->get('x-craft-preview'));
+        $token = $request->query->get('token');
         if (!empty($craftPreview) && !empty($token)) {
             $this->previewMode = true;
 
