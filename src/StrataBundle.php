@@ -50,18 +50,5 @@ class StrataBundle extends AbstractBundle
         // Pass params to service classes
         $builder->getDefinition('strata.event_subscriber.preview_mode')
             ->replaceArgument(0, $config['preview_mode']['data_provider']);
-
-        // OLD
-        $builder->setParameter('strata.preview_mode.data_provider', $config['preview_mode']['data_provider'] ?? '');
-
-        if ($config['tags']['enabled']) {
-            $container->services()
-                ->set('strata.event_subscriber.response_tags', ResponseTagsEventSubscriber::class)
-                ->args([
-                    new Reference('fos_http_cache.http.symfony_response_tagger'),
-                    new Reference('strata.query_manager'),
-                ])
-                ->tag('kernel.event_subscriber');
-        }
     }
 }
