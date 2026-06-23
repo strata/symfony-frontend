@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Bug Fixes
 
-* Fixes to Symfony 8 support ([0b671d1](https://github.com/strata/symfony-frontend/commit/0b671d10f4cd1ef793dd6245cd81745d41e23cb8))
+* Fixes to Symfony 8 support
 
 ## [0.10.0](https://github.com/strata/symfony-frontend/compare/v0.9.2...v0.10.0) (2026-06-09)
 
