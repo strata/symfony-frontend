@@ -28,7 +28,7 @@ Strata\Symfony\TwigExtension:
  */
 class TwigExtension extends AbstractExtension
 {
-    public function getFunctions()
+    public function getFunctions(): array
     {
         $helpers = new ViewFunctions();
         return [
@@ -39,7 +39,7 @@ class TwigExtension extends AbstractExtension
         ];
     }
 
-    public function getFilters()
+    public function getFilters(): array
     {
         $helpers = new ViewFilters();
         return [
@@ -53,7 +53,7 @@ class TwigExtension extends AbstractExtension
         ];
     }
 
-    public function getTests()
+    public function getTests(): array
     {
         $helpers = new ViewTests();
         return [
@@ -69,7 +69,7 @@ class TwigExtension extends AbstractExtension
      * @return TableOfContents
      * @throws \Strata\Frontend\Exception\ViewHelperException
      */
-    public function tableOfContents(Environment $env, $content, ?array $levels = null)
+    public function tableOfContents(Environment $env, $content, ?array $levels = null): TableOfContents
     {
         $content = (string) $content;
         if (is_array($levels)) {

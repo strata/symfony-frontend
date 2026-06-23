@@ -1,0 +1,46 @@
+parameters:
+  strata.preview_mode.data_provider: ''
+
+services:
+  strata.query_manager:
+    class: Strata\Data\Query\QueryManager
+  Strata\Data\Query\QueryManager:
+    alias: strata.query_manager
+
+  strata.site:
+    class: Strata\Frontend\Site
+  Strata\Frontend\Site:
+    alias: strata.site
+
+  strata.response_helper:
+    class: Strata\SymfonyBundle\ResponseHelper\SymfonyResponseHelper
+  Strata\SymfonyBundle\ResponseHelper\SymfonyResponseHelper:
+    alias: strata.response_helper
+
+  strata.twig:
+    class: Strata\SymfonyBundle\Twig\TwigExtension
+    tags:
+      - twig.extension
+
+  strata.event_subscriber.twig:
+    class: Strata\SymfonyBundle\EventSubscriber\TwigEventSubscriber
+    arguments:
+      - '@Twig\Environment'
+      - '@strata.site'
+    tags:
+      - kernel.event_subscriber
+
+  strata.event_subscriber.preview_mode:
+    class: Strata\SymfonyBundle\EventSubscriber\PreviewModeEventSubscriber
+    arguments:
+      - ''
+      - '@strata.query_manager'
+    tags:
+      - kernel.event_subscriber
+
+  strata.event_subscriber.response_tags:
+    class: Strata\SymfonyBundle\EventSubscriber\ResponseHelperEventSubscriber
+    arguments:
+      - '@strata.response_helper'
+    tags:
+      - kernel.event_subscriber
