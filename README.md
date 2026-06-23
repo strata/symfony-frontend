@@ -19,7 +19,15 @@ Install via Composer:
 composer require strata/symfony-frontend
 ```
 
-Please see [Strata Frontend installation docs](https://docs.strata.dev/frontend/installation).
+Enable in your Symfony application in `config/bundles.php` via:
+
+```php
+<?php
+
+return [
+    Strata\SymfonyBundle\StrataBundle::class => ['all' => true],
+];
+```
 
 ## Contributing
 

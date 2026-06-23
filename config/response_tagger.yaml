@@ -1,0 +1,8 @@
+services:
+  strata.event_subscriber.response_tags:
+    class: Strata\SymfonyBundle\EventSubscriber\ResponseTagsEventSubscriber
+    arguments:
+      - '@fos_http_cache.http.symfony_response_tagger'
+      - '@strata.query_manager'
+    tags:
+      - kernel.event_subscriber

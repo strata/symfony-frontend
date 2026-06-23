@@ -1,0 +1,8 @@
+services:
+  strata.data_collector:
+    class: Strata\SymfonyBundle\DataCollector\StrataDataCollector
+    arguments:
+      - '@strata.query_manager'
+      - '@strata.site'
+    tags:
+      - { name: data_collector, id: strata }
