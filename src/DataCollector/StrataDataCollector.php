@@ -51,7 +51,7 @@ class StrataDataCollector extends AbstractDataCollector
      * @param \Throwable|null $exception
      * @throws \Strata\Frontend\Exception\InvalidLocaleException
      */
-    public function collect(Request $request, Response $response, \Throwable $exception = null): void
+    public function collect(Request $request, Response $response, ?\Throwable $exception): void
     {
         $this->data = [
             'cacheEnabled' => $this->manager->isCacheEnabled(),
